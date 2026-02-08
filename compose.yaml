@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  # Frontend React Application
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: restaurant-spa-frontend
+    ports:
+      - "5173:5173"  # Vite default dev server port
+    volumes:
+      - .:/app
+      - /app/node_modules  # Prevents overwriting node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://localhost:3000  # If you add a backend later
+    command: npm run dev -- --host
+    networks:
+      - restaurant-network
+    restart: unless-stopped
+    stdin_open: true  # Keep container running in interactive mode
+    tty: true
+
+networks:
+  restaurant-network:
+    driver: bridge

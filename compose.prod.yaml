@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  # Production Frontend with Nginx
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: restaurant-spa-prod
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - restaurant-network
+    restart: unless-stopped
+
+networks:
+  restaurant-network:
+    driver: bridge
