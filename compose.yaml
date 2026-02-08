@@ -14,7 +14,7 @@ services:
       - /app/node_modules  # Prevents overwriting node_modules
     environment:
       - NODE_ENV=development
-      - VITE_API_URL=http://localhost:3000  # If you add a backend later
+      - VITE_API_URL=http://restaurantsinglepageappreact-hotelsapp-y-427c3c-213-136-72-207.traefik.me/  # If you add a backend later
     command: npm run dev -- --host
     networks:
       - restaurant-network
